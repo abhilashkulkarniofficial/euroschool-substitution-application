@@ -1,0 +1,18 @@
+{
+    "Sangeeta Kulkarni":{
+        "classList":["1A"],
+        "subjects":["Eng","SS"]
+    },
+    "Roopashree S":{
+        "classList":["1A","1C","1E","2A","3A","3E","6D","3G","2E","2C","5C","5D","2F","6A","3C"],
+        "subjects":["2LK","CK","CH","CH/K","3LH/K"]
+    },
+    "Sandana Selvaraj":{
+        "classList":["3B","2D","1B"],
+        "subjects":["Eng","SS"]
+    },
+    "Sujatha S":{
+        "classList":["1C","2B","2F","2E"],
+        "subjects":["SS","Science"]
+    }
+}
