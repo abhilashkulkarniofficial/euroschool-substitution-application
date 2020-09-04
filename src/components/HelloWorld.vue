@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row align="center">
+    <!-- <v-row align="center">
       <v-col class="d-flex" cols="12" sm="6">
         <v-select
           v-model="classId"
@@ -10,7 +10,7 @@
       </v-col>
 
       <v-col class="d-flex" cols="12" sm="6">
-        <v-btn text color="primary" outlined @click="getTimetable">Submit</v-btn>
+        <v-btn text color="primary" outlined>Submit</v-btn>
       </v-col>
     </v-row>
     <v-data-table
@@ -18,7 +18,7 @@
       :items="desserts"
       :items-per-page="5"
       class="elevation-1"
-    ></v-data-table>
+    ></v-data-table> -->
 
 <v-row align="center">
       <v-col class="d-flex" cols="12" sm="2">
@@ -50,7 +50,7 @@
       </v-col>
 
       <v-col class="d-flex" cols="12" sm="2">
-        <v-btn text color="primary" outlined @click="getTeachers">Clear</v-btn>
+        <v-btn text color="primary" outlined @click="clear">Clear</v-btn>
       </v-col>
     </v-row>
 
@@ -77,7 +77,6 @@
 
 <script>
 import axios from 'axios';
-import json from '../assets/teachers.json'
   export default {
     name: 'HelloWorld',
     data () {
@@ -97,10 +96,8 @@ import json from '../assets/teachers.json'
         ],
         desserts: [],
         classId: '',
-        classes:['1A','1B','1C','1D','1E'],
-        subjects:["2LK","CK","CH","CH/K","3LH/K","Eng"],
-        teachersJson:json,
-        teachers:{},
+        classes:['1A','1B','1C','1D','1E','2A','2B','2C','2D','2E','2F'],
+        subjects:["Kannada II L","Compulsory Kannada","Compulsory Hindi","English","Maths","Science","Social Studies","ICT"],
         days:['Monday','Tuesday','Wednesday','Thursday','Friday'],
         selectedElement:{
           day:null,
@@ -112,8 +109,6 @@ import json from '../assets/teachers.json'
       }
     },
     mounted(){
-      for(var k in this.teachersJson) this.teachers[k] = true
-      console.log(this.teachers)
     },
     methods:{
       getTimetable: function(){
@@ -127,51 +122,22 @@ import json from '../assets/teachers.json'
         })
         // console.log(this.classId)
       },
-      getTeachers(){
-        this.reset()
-        console.log(this.selectedElement)
-        if(this.selectedElement.class){
-          for(let teacher in this.teachersJson){
-            if(!this.teachersJson[teacher].classList.includes(this.selectedElement.class)){
-              this.teachers[teacher] = false
-            }
-          }
-        }
-        // if(this.selectedElement.subject){
-        //   for(var teacher in this.teachersJson){
-        //     if(!this.teachersJson[teacher].subjects.includes(this.selectedElement.subject)){
-        //       this.teachers[teacher] = false
-        //     }
-        //   }
-        // }
-
-        if(this.selectedElement.subject){
-          for(let teacher in this.teachersJson){
-            if(!this.teachersJson[teacher].subjects.includes(this.selectedElement.subject)){
-              this.teachers[teacher] = false
-            }
-          }
-        }
-        for(var k in this.teachers){
-          if(this.teachers[k]){
-            this.teacherList.push(k)
-          }
-        }
-        console.log(this.teacherList)
+      async getTeachers(){
+        console.log('sent request')
+        let result = await axios.get('http://127.0.0.1:3000/teachers', {params:{
+          classId:this.selectedElement.class,
+          subject:this.selectedElement.subject
+        }})
+        this.teacherList = result.data
+        console.log(result)
       },
       clear(){
         this.selectedElement = {
           day:null,
           class:null,
           subject:null
-
         }
         this.teacherList = []
-        for(var k in this.teachersJson) this.teachers[k] = true
-      },
-      reset(){
-        this.teacherList = []
-        for(var k in this.teachersJson) this.teachers[k] = true
       }
 
     }
