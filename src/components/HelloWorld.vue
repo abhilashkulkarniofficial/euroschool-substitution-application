@@ -111,20 +111,20 @@ import axios from 'axios';
     mounted(){
     },
     methods:{
-      getTimetable: function(){
-        axios.get('http://127.0.0.1:3000/timetable',{
-          params: {
-            classId: this.classId
-          }
-        }).then((response) => {
-          // console.log(response.data)
-          this.desserts = response.data
-        })
-        // console.log(this.classId)
-      },
+      // getTimetable: function(){
+      //   axios.get('http://127.0.0.1:3000/timetable',{
+      //     params: {
+      //       classId: this.classId
+      //     }
+      //   }).then((response) => {
+      //     // console.log(response.data)
+      //     this.desserts = response.data
+      //   })
+      //   // console.log(this.classId)
+      // },
       async getTeachers(){
         console.log('sent request')
-        let result = await axios.get('http://127.0.0.1:3000/teachers', {params:{
+        let result = await axios.get(`http://127.0.0.1:80/teachers`, {params:{
           classId:this.selectedElement.class,
           subject:this.selectedElement.subject
         }})
