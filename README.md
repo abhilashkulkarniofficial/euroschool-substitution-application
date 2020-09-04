@@ -1,5 +1,8 @@
-### EUROSCHOOL SUBBSTITUTION APPLICATION
+# EUROSCHOOL SUBBSTITUTION APPLICATION
 
-# To-Do
-- [ ] Connect application to server
+### To-Do
+- [X] Connect application to server
 - [ ] Host application on Heroku
+- [ ] Add Vuex store state management
+- [ ] Add Login / Register pages and authentication
+- [ ] Create Home page for the application
