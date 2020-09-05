@@ -123,13 +123,13 @@ import axios from 'axios';
       //   // console.log(this.classId)
       // },
       async getTeachers(){
-        console.log('sent request')
-        let result = await axios.get(`http://127.0.0.1:80/teachers`, {params:{
-          classId:this.selectedElement.class,
-          subject:this.selectedElement.subject
-        }})
-        this.teacherList = result.data
-        console.log(result)
+        // console.log('sent request')
+        // let result = await axios.get(`http://127.0.0.1:80/teachers`, {params:{
+        //   classId:this.selectedElement.class,
+        //   subject:this.selectedElement.subject
+        // }})
+        // this.teacherList = result.data
+        // console.log(result)
       },
       clear(){
         this.selectedElement = {
